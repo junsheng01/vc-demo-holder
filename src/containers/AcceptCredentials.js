@@ -28,6 +28,7 @@ const AcceptCredentials = (props) => {
             console.log(credential)
             if (credential.httpStatusCode === 500) return
             setCred(credential)
+            console.log(cred);
         } catch (error){
             console.log(error)
         }
@@ -51,9 +52,10 @@ const AcceptCredentials = (props) => {
       
       try {
         checkLogin()
-        if (queryString.parse(props.location.search).vcURL) {
-          console.log(queryString.parse(props.location.search).vcURL);
-          fetchCredential(queryString.parse(props.location.search).vcURL);
+        const { vcURL } = queryString.parse(props.location.search)
+        if (vcURL) {
+          console.log(vcURL);
+          fetchCredential(vcURL);
         }
       } catch (error) {
         console.log(error)

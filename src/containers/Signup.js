@@ -34,17 +34,8 @@ export default function Signup(props) {
     }
 
     try {
-      const token = await window.sdk.signUp(username, password)
-
-      const isUsername = !username.startsWith('+') && username.indexOf('@') === -1
-
-      if (isUsername) {
-        props.userHasAuthenticated(true)
-
-        props.history.push('/', { username })
-      } else {
-        props.history.push('/confirm-signup', { username, token })
-      }
+      await window.sdk.signUp(username, password)
+      props.history.push('/', { username })
 
     } catch (error) {
       alert(error.message)
