@@ -19,13 +19,13 @@ describe('Test DisplayCredentials component', () => {
                 },
             }
         }
-        const { getByText } = render(<DisplayCredentials cred={testCredential} />);
+        const { queryByText } = render(<DisplayCredentials cred={testCredential} />);
 
-        expect(getByText('Given Name:')).toBeTruthy();
-        expect(getByText(testCredential.credentialSubject.data.givenName)).toBeTruthy();
-        expect(getByText('Family Name:')).toBeTruthy();
-        expect(getByText(testCredential.credentialSubject.data.familyName)).toBeTruthy();
-        expect(getByText('Document Type:')).toBeTruthy();
-        expect(getByText(testCredential.credentialSubject.data.hasIDDocument.hasIDDocument.documentType)).toBeTruthy()
+        expect(queryByText('Given Name:')).toBeTruthy();
+        expect(queryByText(testCredential.credentialSubject.data.givenName)).toBeTruthy();
+        expect(queryByText('Family Name:')).toBeTruthy();
+        expect(queryByText(testCredential.credentialSubject.data.familyName)).toBeTruthy();
+        expect(queryByText('Document Type:')).toBeTruthy();
+        expect(queryByText(testCredential.credentialSubject.data.hasIDDocument.hasIDDocument.documentType)).toBeTruthy()
     })
 })

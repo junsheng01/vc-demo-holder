@@ -9,39 +9,39 @@ window.alert = jest.fn()
 
 describe('Test Signup component', () => {
     test('Form render without email params', () => {
-        const { getByText, getByRole, getByLabelText, queryByLabelText, container } = render(
+        const { queryByText, queryByRole, queryByLabelText, container } = render(
             <MemoryRouter>
                 <Signup />
             </MemoryRouter>
         );
         
-        expect(getByText('Create account')).toBeTruthy();
-        expect(getByText('Welcome to your personal wallet. Here you will be able to store, view and manage your digital identity.', { exact: false })).toBeTruthy();
-        expect(getByText('In order to access your wallet you will need to set up a password first', { exact: false })).toBeTruthy();
+        expect(queryByText('Create account')).toBeTruthy();
+        expect(queryByText('Welcome to your personal wallet. Here you will be able to store, view and manage your digital identity.', { exact: false })).toBeTruthy();
+        expect(queryByText('In order to access your wallet you will need to set up a password first', { exact: false })).toBeTruthy();
         expect(queryByLabelText('Username')).toBeTruthy();
-        expect(getByLabelText('Password')).toBeTruthy();
-        expect(getByLabelText('Confirm Password')).toBeTruthy();
-        expect(getByRole('checkbox', {name: 'I accept the terms and conditions'})).toBeTruthy();
-        expect(getByRole('button', {name: 'Sign Up'})).toBeTruthy();
+        expect(queryByLabelText('Password')).toBeTruthy();
+        expect(queryByLabelText('Confirm Password')).toBeTruthy();
+        expect(queryByRole('checkbox', {name: 'I accept the terms and conditions'})).toBeTruthy();
+        expect(queryByRole('button', {name: 'Sign Up'})).toBeTruthy();
         expect(container.querySelector('[href="/login"]')).toBeTruthy();
     });
 
     test('Form render with email params', () => {
         jest.spyOn(URLSearchParams.prototype, 'get').mockImplementation(x=>'test@mail.com');
-        const { getByText, getByRole, getByLabelText, queryByLabelText, container } = render(
+        const { queryByText, queryByRole, queryByLabelText, container } = render(
             <MemoryRouter>
                 <Signup />
             </MemoryRouter>
         );
         
-        expect(getByText('Create account')).toBeTruthy();
-        expect(getByText('Welcome to your personal wallet. Here you will be able to store, view and manage your digital identity.', { exact: false })).toBeTruthy();
-        expect(getByText('In order to access your wallet you will need to set up a password first', { exact: false })).toBeTruthy();
+        expect(queryByText('Create account')).toBeTruthy();
+        expect(queryByText('Welcome to your personal wallet. Here you will be able to store, view and manage your digital identity.', { exact: false })).toBeTruthy();
+        expect(queryByText('In order to access your wallet you will need to set up a password first', { exact: false })).toBeTruthy();
         expect(queryByLabelText('Username')).not.toBeTruthy()
-        expect(getByLabelText('Password')).toBeTruthy();
-        expect(getByLabelText('Confirm Password')).toBeTruthy();
-        expect(getByRole('checkbox', {name: 'I accept the terms and conditions'})).toBeTruthy();
-        expect(getByRole('button', {name: 'Sign Up'})).toBeTruthy();
+        expect(queryByLabelText('Password')).toBeTruthy();
+        expect(queryByLabelText('Confirm Password')).toBeTruthy();
+        expect(queryByRole('checkbox', {name: 'I accept the terms and conditions'})).toBeTruthy();
+        expect(queryByRole('button', {name: 'Sign Up'})).toBeTruthy();
         expect(container.querySelector('[href="/login"]')).toBeTruthy();
 
     });

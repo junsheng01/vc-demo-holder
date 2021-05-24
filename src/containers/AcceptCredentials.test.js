@@ -55,7 +55,7 @@ describe('Test AcceptCredentials component', () => {
             jest.spyOn(SdkService.prototype, 'getDidAndCredentials').mockImplementation(()=>{
                 return Promise.resolve({did: 'did'});
             });
-            const { getByRole, getByText } = render(<AcceptCredentials
+            const { queryByRole, queryByText } = render(<AcceptCredentials
                 location={testProps.location}
                 setAcceptVCLink={testProps.setAcceptVCLink}
                 userHasAuthenticated={testProps.userHasAuthenticated}
@@ -65,15 +65,15 @@ describe('Test AcceptCredentials component', () => {
             await waitFor(()=> {
                 expect(SdkService.prototype.getDidAndCredentials).toHaveBeenCalled();
                 expect(testProps.userHasAuthenticated).toBeCalled()
-                expect(getByRole('heading', {level: 1, name: "Approved Verifiable Credential"})).toBeTruthy();
-                expect(getByText('MockDisplay'))
-                expect(getByRole('button', {name: 'Save VC'})).toBeTruthy();
-                expect(getByRole('button', {name: 'Reject VC'})).toBeTruthy();
+                expect(queryByRole('heading', {level: 1, name: "Approved Verifiable Credential"})).toBeTruthy();
+                expect(queryByText('MockDisplay')).toBeTruthy();
+                expect(queryByRole('button', {name: 'Save VC'})).toBeTruthy();
+                expect(queryByRole('button', {name: 'Reject VC'})).toBeTruthy();
             });
             
         });
 
-        test('AcceptCredentials component shows Verifiable Credential if not login', async () => {
+        test('AcceptCredentials component shows Verifiable Credential if not logged in', async () => {
             const testCredential = {
                 credentialSubject: {
                     data: {
@@ -112,7 +112,7 @@ describe('Test AcceptCredentials component', () => {
             });
         })
 
-        test('AcceptCredentials component shows Verifiable Credential if Login and with no VC', async () => {
+        test('AcceptCredentials component shows No Verifiable Credential Found if Logged in and with no VC', async () => {
             jest.spyOn(global, 'fetch').mockImplementation(() =>
                 Promise.resolve({
                     json: () => Promise.resolve(null),
@@ -121,7 +121,7 @@ describe('Test AcceptCredentials component', () => {
             jest.spyOn(SdkService.prototype, 'getDidAndCredentials').mockImplementation(()=>{
                 return Promise.resolve({did: 'did'});
             });
-            const { getByRole } = render(<AcceptCredentials
+            const { queryByRole } = render(<AcceptCredentials
                 location={testProps.location}
                 setAcceptVCLink={testProps.setAcceptVCLink}
                 userHasAuthenticated={testProps.userHasAuthenticated}
@@ -131,7 +131,7 @@ describe('Test AcceptCredentials component', () => {
             await waitFor(()=> {
                 expect(SdkService.prototype.getDidAndCredentials).toHaveBeenCalled();
                 expect(testProps.userHasAuthenticated).toBeCalled()
-                expect(getByRole('heading', {level: 3, name: "No Verifiable Credential found"})).toBeTruthy();
+                expect(queryByRole('heading', {level: 3, name: "No Verifiable Credential found"})).toBeTruthy();
             });
             
         });
