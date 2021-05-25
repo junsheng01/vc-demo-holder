@@ -1,6 +1,5 @@
 import cloudWalletApi from './apiService';
 import {storeSignedVCs} from './apiService';
-// import * as apiService from './apiService'
 
 
 describe('Test apiService', () => {
