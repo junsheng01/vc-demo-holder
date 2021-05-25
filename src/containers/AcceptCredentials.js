@@ -28,7 +28,6 @@ const AcceptCredentials = (props) => {
             console.log(credential)
             if (credential.httpStatusCode === 500) return
             setCred(credential)
-            console.log(cred);
         } catch (error){
             console.log(error)
         }
