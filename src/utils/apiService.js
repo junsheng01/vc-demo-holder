@@ -22,7 +22,7 @@ cloudWalletApi.interceptors.request.use(req => {
 });
 
 export const storeSignedVCs = async (data) => {
-	const response = await cloudWalletApi.post('/wallet/credentials', data)
+	const response = await cloudWalletApi.post('/wallet/credentials', data);
     return response.data;
 };
 

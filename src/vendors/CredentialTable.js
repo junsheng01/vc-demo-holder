@@ -40,31 +40,31 @@ const CredentialTable = ({ credentials }) => {
 
     return <div>
         <Table bordered>
-              <thead className="thead-light">
-                <tr>
-                  <th>Index</th>
-                  <th>Given Name</th>
-                  <th>Family Name</th>
-                  <th>Email</th>
-                  <th>VC Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  vcData.map((cred, index) => {
-                    return (
-                      <tr key={index+1}>
-                        <th scope='row'>{index+1}</th>
-                        <td>{cred.givenName || cred.name}</td>
-                        <td>{cred.familyName || ''}</td>
-                        <td>{cred.email || extractEmailFromIDDocument(cred) || '' }</td>
-                        <td>{cred.hasIDDocument ?  cred.hasIDDocument.hasIDDocument.documentType : 'ID Document'}</td>
-                      </tr>
-                    )
-                  })
-                }
-              </tbody>
-            </Table>
+          <thead className="thead-light">
+            <tr>
+              <th>Index</th>
+              <th>Given Name</th>
+              <th>Family Name</th>
+              <th>Email</th>
+              <th>VC Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              vcData.map((cred, index) => {
+                return (
+                  <tr key={index+1}>
+                    <th scope='row'>{index+1}</th>
+                    <td>{cred.givenName || cred.name}</td>
+                    <td>{cred.familyName || ''}</td>
+                    <td>{cred.email || extractEmailFromIDDocument(cred) || '' }</td>
+                    <td>{cred.hasIDDocument ?  cred.hasIDDocument.hasIDDocument.documentType : 'ID Document'}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </Table>
     </div>
 }
 

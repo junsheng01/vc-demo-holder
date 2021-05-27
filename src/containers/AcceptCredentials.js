@@ -51,9 +51,10 @@ const AcceptCredentials = (props) => {
       
       try {
         checkLogin()
-        if (queryString.parse(props.location.search).vcURL) {
-          console.log(queryString.parse(props.location.search).vcURL);
-          fetchCredential(queryString.parse(props.location.search).vcURL);
+        const { vcURL } = queryString.parse(props.location.search)
+        if (vcURL) {
+          console.log(vcURL);
+          fetchCredential(vcURL);
         }
       } catch (error) {
         console.log(error)
