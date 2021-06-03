@@ -1,5 +1,5 @@
 # Affinidi Use Case Implementation - Driving License - Holder
-
+[![Generic badge](https://img.shields.io/badge/Test_Coverage-95%-<COLOR>.svg)](https://shields.io/)
 ## Table of contents
 
 - [Introduction](#introduction)
