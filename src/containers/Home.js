@@ -49,7 +49,6 @@ class Home extends Component {
 
   render() {
     const { verifiableCredentials } = this.state
-
     const haveCredentials = verifiableCredentials && verifiableCredentials.length > 0
     const { isAuthenticated } = this.props
 

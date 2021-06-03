@@ -15,6 +15,7 @@ function parseInfoFromToken(token) {
         const requesterDid = payload.iss
         return { requesterDid, callbackURL }
     } catch(err) {
+        console.log(err)
         return {}
     }
 }
@@ -22,12 +23,15 @@ function parseInfoFromToken(token) {
 async function getCredentials(credentialShareRequestToken) {
     const credentials = await window.sdk.getCredentials(credentialShareRequestToken)
     if (!Array.isArray(credentials) || credentials.length < 1) {
-        throw new Error('No credential found for this request!')
+        const error = new Error('No credential found for this request!')
+        console.log(error)
+        throw error
     }
     return credentials
 }
 
 async function createCredentialShareResponseToken(credentialShareRequestToken, credentials, requesterDid, history) {
+    console.log(credentialShareRequestToken);
     const credentialShareResponseToken = await window.sdk.createCredentialShareResponseToken(credentialShareRequestToken, credentials)
     console.log('credentialShareResponseToken: ', credentialShareResponseToken);
     console.log('requesterDid: ', requesterDid);
