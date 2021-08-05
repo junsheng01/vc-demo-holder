@@ -4,36 +4,37 @@ import { Link } from 'react-router-dom'
 
 import './Login.css'
 
-export default function Login(props) {
+export default function Login(props)
+{
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  function validateForm() {
+  function validateForm()
+  {
     return username.length > 0 && password.length > 0
   }
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event)
+  {
     event.preventDefault()
 
     let networkMember
     try {
       networkMember = await window.sdk.fromLoginAndPassword(username, password)
-      if(networkMember){
+      if (networkMember) {
         props.userHasAuthenticated(true)
       }
-      
-      if (props.acceptVCLink){
-        console.log('routing to accept page')
+
+      if (props.acceptVCLink) {
         props.history.push(`/accept-credentials?vcURL=${props.acceptVCLink}`)
       }
-      else if (props.shareRequestToken){
-        console.log('routing to share page')
+      else if (props.shareRequestToken) {
         props.history.push(`/share-credentials?token=${props.shareRequestToken}`)
       }
       else {
         props.history.push('/', { username })
       }
-      
+
     } catch (error) {
       alert(error)
     }
@@ -46,29 +47,31 @@ export default function Login(props) {
         <p className='Info'>
           Login in order to continue
         </p>
-        <FormGroup controlId='username' bsSize='large'>
-          <ControlLabel className='Label'>Username</ControlLabel>
-          <FormControl
-            autoFocus
-            className='Input'
-            type='text'
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId='password' bsSize='large'>
-          <ControlLabel className='Label'>Password</ControlLabel>
-          <FormControl
-            className='Input'
-            type='password'
-            value={password}
-            onChange={ event => setPassword(event.target.value) }
-          />
-        </FormGroup>
-        <Link className='Link' to='/reset-password'>Forgot password?</Link>
-        <Button className='Button' block bsSize='large' disabled={!validateForm()} onClick={handleSubmit} type='submit'>
-          Login
-        </Button>
+        <form onSubmit={handleSubmit}>
+          <FormGroup controlId='username' bsSize='large'>
+            <ControlLabel className='Label'>Username</ControlLabel>
+            <FormControl
+              autoFocus
+              className='Input'
+              type='text'
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            />
+          </FormGroup>
+          <FormGroup controlId='password' bsSize='large'>
+            <ControlLabel className='Label'>Password</ControlLabel>
+            <FormControl
+              className='Input'
+              type='password'
+              value={password}
+              onChange={event => setPassword(event.target.value)}
+            />
+          </FormGroup>
+          <Link className='Link' to='/reset-password'>Forgot password?</Link>
+          <Button className='Button' block bsSize='large' disabled={!validateForm()} type='submit'>
+            Login
+          </Button>
+        </form>
       </div>
     </div>
   )
